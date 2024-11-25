@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { useDropzone } from "react-dropzone";
+import { useDropzone, FileRejection } from "react-dropzone";
 import { Upload, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { toast } from "sonner"; // Import toast for notifications
 import {
   Tooltip,
   TooltipContent,
@@ -16,20 +17,35 @@ const UploadFeature = () => {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [uploadStatus, setUploadStatus] = useState("");
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    // Simulate file upload
-    setUploadStatus("Uploading...");
-    let progress = 0;
-    const interval = setInterval(() => {
-      progress += 10;
-      setUploadProgress(progress);
-      if (progress >= 100) {
-        clearInterval(interval);
-        setUploadStatus("Upload complete!");
-        // Here you would typically send the file to your server
+  const onDrop = useCallback(
+    (acceptedFiles: File[], fileRejections: FileRejection[]) => {
+      if (fileRejections.length > 0) {
+        toast.error(
+          "Some files were not accepted. Please check the file types."
+        );
+        fileRejections.forEach(({ file }) => {
+          toast.error(`File not accepted: ${file.name}`);
+        });
       }
-    }, 500);
-  }, []);
+
+      // Process accepted files
+      acceptedFiles.forEach((file) => {
+        // Simulate file upload
+        setUploadStatus(`Uploading ${file.name}...`);
+        let progress = 0;
+        const interval = setInterval(() => {
+          progress += 10;
+          setUploadProgress(progress);
+          if (progress >= 100) {
+            clearInterval(interval);
+            setUploadStatus(`Upload complete for ${file.name}!`);
+            // Here you would typically send the file to your server
+          }
+        }, 500);
+      });
+    },
+    []
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
