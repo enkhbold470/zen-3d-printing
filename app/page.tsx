@@ -4,16 +4,18 @@ import HeroSection from "@/components/HeroSection";
 // import QuoteGenerator from "@/components/QuoteGenerator";
 import GalleryOfServices from "@/components/GalleryOfServices";
 import CustomerTestimonials from "@/components/CustomerTestimonials";
-
+import About from "@/components/about-us";
+import Contact from "@/components/contact";
 export default function Home() {
   return (
     <main className="min-h-screen bg-white">
-      {/* <Header /> */}
       <HeroSection />
-      {/* <UploadFeature /> */}
-      {/* <QuoteGenerator /> */}
       <GalleryOfServices />
       <CustomerTestimonials />
+      <div className="container mx-auto px-4 py-16 flex flex-col md:flex-row gap-8">
+        <About />
+        <Contact />
+      </div>
     </main>
   );
 }

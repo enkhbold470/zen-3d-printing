@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-
+import Link from "next/link";
 const HeroSection = () => {
   return (
     <div className="relative bg-white overflow-hidden">
@@ -19,9 +19,11 @@ const HeroSection = () => {
               </p>
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                 <div className="rounded-md shadow">
-                  <Button className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10">
-                    Upload Your Model
-                  </Button>
+                  <Link href="/dashboard">
+                    <Button className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10">
+                      Upload Your Model
+                    </Button>
+                  </Link>
                 </div>
                 <div className="mt-3 sm:mt-0 sm:ml-3">
                   <Button

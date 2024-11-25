@@ -1,23 +1,31 @@
 "use client";
-
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
+import {
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  SignOutButton,
+  UserButton,
+  useUser,
+} from "@clerk/nextjs";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user } = useUser(); // Get user information
 
   const navItems = [
     { name: "Home", href: "/" },
-    { name: "Services", href: "/services" },
-    { name: "Pricing", href: "/pricing" },
-    { name: "About Us", href: "/about" },
-    { name: "Contact", href: "/contact" },
+    { name: "Services", href: "#services" },
+    // { name: "Pricing", href: "#pricing" },
+    { name: "About Us", href: "#about" },
+    { name: "Contact", href: "#contact" },
   ];
 
   return (
-    <header className="bg-white shadow-sm">
+    <header className="bg-white shadow-sm ">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
@@ -52,15 +60,39 @@ const Header = () => {
             ))}
           </nav>
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            <Button className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700">
-              Order Now
-            </Button>
+            <SignedIn>
+              <div className="flex items-center space-x-3 ml-auto">
+                {user && (
+                  <span className="flex text-xs text-gray-700  items-center gap-2">
+                    Welcome, {user.firstName}!
+                    {/* <SignOutButton>
+                      <Button className="text-xs text-white bg-red-600 hover:bg-red-700 rounded">
+                        Sign Out
+                      </Button>
+                    </SignOutButton> */}
+                  </span>
+                )}
+                <Link href="/dashboard">
+                  <Button className="text-xs text-white bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded">
+                    Order Now
+                  </Button>
+                </Link>
+                <UserButton />
+              </div>
+            </SignedIn>
+            <SignedOut>
+              <SignInButton>
+                <Button className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700">
+                  Sign In
+                </Button>
+              </SignInButton>
+            </SignedOut>
           </div>
         </div>
       </div>
 
       {isMenuOpen && (
-        <div className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden  z-20">
+        <div className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden z-20">
           <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
             <div className="pt-5 pb-6 px-5">
               <div className="flex items-center justify-between">
@@ -113,9 +145,18 @@ const Header = () => {
               </div>
             </div>
             <div className="py-6 px-5 space-y-6">
-              <Button className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700">
-                Order Now
-              </Button>
+              <SignedIn>
+                <Link href="/dashboard">
+                  <Button className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700">
+                    Order Now
+                  </Button>
+                </Link>
+                <SignOutButton>
+                  <Button className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-600 hover:bg-red-700">
+                    Sign Out
+                  </Button>
+                </SignOutButton>
+              </SignedIn>
             </div>
           </div>
         </div>
