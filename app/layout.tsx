@@ -8,6 +8,7 @@ import {
   // SignedOut,
   // UserButton,
 } from "@clerk/nextjs";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Zen 3D Printing Service",
@@ -32,6 +33,7 @@ export default function RootLayout({
             </SignedIn> */}
           </header>
           {children}
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>
