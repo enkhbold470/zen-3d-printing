@@ -12,17 +12,9 @@ import {
   useUser,
 } from "@clerk/nextjs";
 
-const Header = () => {
+export default function HeaderDashboard() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user } = useUser(); // Get user information
-
-  const navItems = [
-    // { name: "Home", href: "/" },
-    { name: "Services", href: "#services" },
-    // { name: "Pricing", href: "#pricing" },
-    { name: "About Us", href: "#about" },
-    // { name: "Contact", href: "#contact" },
-  ];
 
   return (
     <header className="bg-white shadow-sm ">
@@ -48,35 +40,15 @@ const Header = () => {
               <Menu className="h-6 w-6" aria-hidden="true" />
             </Button>
           </div>
-          <nav className="hidden md:flex space-x-10">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
-              >
-                {item.name}
-              </Link>
-            ))}
-          </nav>
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
             <SignedIn>
               <div className="flex items-center space-x-3 ml-auto">
                 {user && (
-                  <span className="flex text-xs text-gray-700  items-center gap-2">
+                  <span className="flex  text-gray-700  items-center gap-2">
                     Welcome, {user.firstName}!
-                    {/* <SignOutButton>
-                      <Button className="text-xs text-white bg-red-600 hover:bg-red-700 rounded">
-                        Sign Out
-                      </Button>
-                    </SignOutButton> */}
                   </span>
                 )}
-                <Link href="/dashboard">
-                  <Button className="text-xs text-white bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded">
-                    Order Now
-                  </Button>
-                </Link>
+
                 <UserButton />
               </div>
             </SignedIn>
@@ -128,21 +100,6 @@ const Header = () => {
                   </Button>
                 </div>
               </div>
-              <div className="mt-6">
-                <nav className="grid gap-y-8">
-                  {navItems.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
-                    >
-                      <span className="ml-3 text-base font-medium text-gray-900">
-                        {item.name}
-                      </span>
-                    </Link>
-                  ))}
-                </nav>
-              </div>
             </div>
             <div className="py-6 px-5 space-y-6">
               <SignedIn>
@@ -163,6 +120,4 @@ const Header = () => {
       )}
     </header>
   );
-};
-
-export default Header;
+}

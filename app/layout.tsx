@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/Header";
+// import Header from "@/components/Header";
 import {
   ClerkProvider,
   // SignInButton,
@@ -24,7 +24,6 @@ export default function RootLayout({
       <html lang="en">
         <body className="antialiased">
           <header>
-            <Header />
             {/* <SignedOut>
               <SignInButton />
             </SignedOut>
