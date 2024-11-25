@@ -51,7 +51,7 @@ const GalleryOfServices = () => {
       : projects.filter((project) => project.category === filter);
 
   return (
-    <section className="py-12 bg-gray-50">
+    <section id="services" className="py-12 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:text-center">
           <h2 className="text-base text-blue-600 font-semibold tracking-wide uppercase">
