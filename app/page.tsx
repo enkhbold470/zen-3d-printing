@@ -1,4 +1,4 @@
-// import Header from "@/components/Header";
+import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 // import UploadFeature from "@/components/UploadFeature";
 // import QuoteGenerator from "@/components/QuoteGenerator";
@@ -9,6 +9,7 @@ import Contact from "@/components/contact";
 export default function Home() {
   return (
     <main className="min-h-screen bg-white">
+      <Header />
       <HeroSection />
       <GalleryOfServices />
       <CustomerTestimonials />

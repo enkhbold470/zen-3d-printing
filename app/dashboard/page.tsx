@@ -1,10 +1,10 @@
 "use client";
-
 import { useState, useCallback } from "react";
 import { FileUploadArea } from "@/components/file-upload-area";
 import { FileList } from "@/components/file-list";
 import { Button } from "@/components/ui/button";
 import { PlusCircle } from "lucide-react";
+import HeaderDashboard from "@/components/HeaderDashboard";
 
 interface FileInfo {
   id: string;
@@ -42,6 +42,7 @@ export default function Dashboard() {
 
   return (
     <div className="container mx-auto p-4 space-y-6">
+      <HeaderDashboard />
       <h1 className="text-3xl font-bold">Dashboard</h1>
       <FileUploadArea onFileUpload={handleFileUpload} />
       <div className="text-center">

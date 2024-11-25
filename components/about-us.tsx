@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <section className="flex-1 py-16">
+    <section id="about" className="flex-1 py-16">
       <div className="max-w-5xl mx-auto text-center">
         <h1 className="text-4xl font-extrabold text-gray-900 mb-8">
           About Zen 3D Printing Service
