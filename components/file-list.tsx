@@ -31,6 +31,10 @@ export function FileList({ files: initialFiles, onRefresh }: FileListProps) {
   const { user } = useUser();
 
   useEffect(() => {
+    setFiles(initialFiles);
+  }, [initialFiles]);
+
+  useEffect(() => {
     async function fetchFiles() {
       if (!user) return;
 
@@ -82,18 +86,18 @@ export function FileList({ files: initialFiles, onRefresh }: FileListProps) {
     }
   };
 
-  useEffect(() => {
-    const deleteFiles = async () => {
-      const filesToDelete = files.filter(
-        (file) => file.status === "In Processing"
-      );
-      for (const file of filesToDelete) {
-        await handleDeleteFile(file.id);
-      }
-    };
+  // useEffect(() => {
+  //   const deleteFiles = async () => {
+  //     const filesToDelete = files.filter(
+  //       (file) => file.status === "In Processing"
+  //     );
+  //     for (const file of filesToDelete) {
+  //       await handleDeleteFile(file.id);
+  //     }
+  //   };
 
-    deleteFiles();
-  }, [files]);
+  //   deleteFiles();
+  // }, [files]);
 
   return (
     <div>

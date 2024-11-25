@@ -31,7 +31,7 @@ export default function Dashboard() {
         path: paths[index],
       }));
 
-      setFiles((prevFiles) => [...prevFiles, ...newFiles]);
+      setFiles((prevFiles) => [...prevFiles, ...newFiles]); // Update state with new files
 
       // Simulate processing after upload
       newFiles.forEach((file) => {
