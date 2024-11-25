@@ -5,6 +5,7 @@ import { FileList } from "@/components/file-list";
 import { Button } from "@/components/ui/button";
 import { PlusCircle } from "lucide-react";
 import HeaderDashboard from "@/components/HeaderDashboard";
+import { useUser } from "@clerk/nextjs";
 
 interface FileInfo {
   id: string;
@@ -12,33 +13,43 @@ interface FileInfo {
   size: number;
   uploadDate: Date;
   status: "Uploaded" | "In Processing";
+  path: string;
 }
 
 export default function Dashboard() {
   const [files, setFiles] = useState<FileInfo[]>([]);
+  const { user } = useUser();
 
-  const handleFileUpload = useCallback((uploadedFiles: File[]) => {
-    const newFiles: FileInfo[] = uploadedFiles.map((file) => ({
-      id: Math.random().toString(36).substr(2, 9),
-      name: file.name,
-      size: file.size,
-      uploadDate: new Date(),
-      status: "Uploaded",
-    }));
+  const handleFileUpload = useCallback(
+    (uploadedFiles: File[], paths: string[]) => {
+      const newFiles: FileInfo[] = uploadedFiles.map((file, index) => ({
+        id: Math.random().toString(36).substr(2, 9),
+        name: file.name,
+        size: file.size,
+        uploadDate: new Date(),
+        status: "Uploaded",
+        path: paths[index],
+      }));
 
-    setFiles((prevFiles) => [...prevFiles, ...newFiles]);
+      setFiles((prevFiles) => [...prevFiles, ...newFiles]);
 
-    // Simulate processing after upload
-    newFiles.forEach((file) => {
-      setTimeout(() => {
-        setFiles((prevFiles) =>
-          prevFiles.map((f) =>
-            f.id === file.id ? { ...f, status: "In Processing" } : f
-          )
-        );
-      }, 2000);
-    });
-  }, []);
+      // Simulate processing after upload
+      newFiles.forEach((file) => {
+        setTimeout(() => {
+          setFiles((prevFiles) =>
+            prevFiles.map((f) =>
+              f.id === file.id ? { ...f, status: "In Processing" } : f
+            )
+          );
+        }, 2000);
+      });
+    },
+    []
+  );
+
+  if (!user) {
+    return <div>Please sign in to access the dashboard</div>;
+  }
 
   return (
     <div className="container mx-auto p-4 space-y-6">
