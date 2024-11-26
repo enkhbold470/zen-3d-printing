@@ -1,0 +1,52 @@
+[
+  {
+    "material": "PLA",
+    "density": 1.25,
+    "costPerGram": 0.05,
+    "electricityCostPerKWh": 0.3,
+    "printerPowerUsage": 0.5,
+    "maintenanceCost": 1.5,
+    "laborCostPerHour": 20.0,
+    "profitMargin": 0.5
+  },
+  {
+    "material": "ABS",
+    "density": 1.04,
+    "costPerGram": 0.03,
+    "electricityCostPerKWh": 0.3,
+    "printerPowerUsage": 0.5,
+    "maintenanceCost": 1.5,
+    "laborCostPerHour": 20.0,
+    "profitMargin": 0.5
+  },
+  {
+    "material": "PETG",
+    "density": 1.27,
+    "costPerGram": 0.025,
+    "electricityCostPerKWh": 0.3,
+    "printerPowerUsage": 0.5,
+    "maintenanceCost": 1.5,
+    "laborCostPerHour": 20.0,
+    "profitMargin": 0.5
+  },
+  {
+    "material": "Nylon",
+    "density": 1.15,
+    "costPerGram": 0.04,
+    "electricityCostPerKWh": 0.3,
+    "printerPowerUsage": 0.5,
+    "maintenanceCost": 1.5,
+    "laborCostPerHour": 20.0,
+    "profitMargin": 0.5
+  },
+  {
+    "material": "TPU",
+    "density": 1.20,
+    "costPerGram": 0.05,
+    "electricityCostPerKWh": 0.3,
+    "printerPowerUsage": 0.5,
+    "maintenanceCost": 1.5,
+    "laborCostPerHour": 20.0,
+    "profitMargin": 0.5
+  }
+]

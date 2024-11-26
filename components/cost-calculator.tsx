@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
@@ -8,7 +7,7 @@ import { listFiles } from "@/lib/supabase/storage";
 import * as THREE from "three";
 import { Loader2 } from "lucide-react";
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader.js";
-
+import pricing from "@/data/pricing.json";
 interface CostEstimate {
   fileName: string;
   volume: number; // in cm³
@@ -21,13 +20,25 @@ interface CostEstimate {
 export default function CostCalculator() {
   const [isCalculating, setIsCalculating] = useState(false);
   const [estimates, setEstimates] = useState<CostEstimate[]>([]);
+  const [fileCount, setFileCount] = useState(0);
   const { user } = useUser();
-
+  const [totalCost, setTotalCost] = useState(0);
+  const pricingData = pricing.find((m) => m.material === "PLA") || {
+    material: "PLA",
+    density: 0,
+    costPerGram: 0,
+    electricityCostPerKWh: 0,
+    printerPowerUsage: 0,
+    maintenanceCost: 0,
+    laborCostPerHour: 0,
+    profitMargin: 0,
+  };
   const calculateModelMetrics = async (
     url: string,
     fileName: string
   ): Promise<CostEstimate> => {
     console.log(`Calculating metrics for: ${fileName}`);
+
     const loader = new STLLoader();
     const geometry = await new Promise<THREE.BufferGeometry>(
       (resolve, reject) => {
@@ -35,7 +46,6 @@ export default function CostCalculator() {
       }
     );
 
-    // Calculate volume using signed tetrahedron method
     const position = geometry.attributes.position?.array as Float32Array;
     let volume = 0;
 
@@ -61,25 +71,42 @@ export default function CostCalculator() {
     volume = Math.abs(volume) / 1000; // Convert to cm³
     console.log(`Volume for ${fileName}: ${volume} cm³`);
 
-    // Basic calculations
-    const material = "PLA";
-    const density = 1.24; // g/cm³ for PLA
+    const density = pricingData.density || 0;
+    const costPerGram = pricingData.costPerGram || 0;
+
     const weight = volume * density;
-    const printTime = volume * 0.1; // Rough estimate: 6 minutes per cm³
-    const costPerGram = 0.03; // $0.03 per gram
-    const cost = weight * costPerGram + printTime * 2; // Material cost + machine time
+    let printTime = volume * 0.1; // Changed variable name to match interface
+
+    // Adjust print time and labor cost
+    // if (printTime < 1) {
+    //   printTime = 1; // Set minimum print time to 1 hour
+    // }
+
+    const filamentCost = weight * costPerGram;
+    const electricityCost =
+      pricingData.printerPowerUsage *
+      printTime *
+      pricingData.electricityCostPerKWh;
+
+    const baseCost =
+      filamentCost + electricityCost + pricingData.maintenanceCost;
+    const profit = baseCost * pricingData.profitMargin;
+    const totalCost = baseCost + profit;
 
     console.log(`Weight for ${fileName}: ${weight} g`);
     console.log(`Print time for ${fileName}: ${printTime} hours`);
-    console.log(`Cost for ${fileName}: $${cost}`);
+    console.log(`Total Cost for ${fileName}: $${totalCost.toFixed(2)}`);
+
+    // Debugging: Log the pricing data used for calculations
+    console.log(`Pricing Data for ${fileName}:`, pricingData);
 
     return {
       fileName,
       volume,
       weight,
-      printTime,
-      cost,
-      material,
+      printTime, // Return printTime instead of printTimeInHours
+      cost: totalCost,
+      material: pricingData.material,
     };
   };
 
@@ -89,12 +116,12 @@ export default function CostCalculator() {
     setIsCalculating(true);
     try {
       const files = await listFiles(user.id);
-      console.log(`Files retrieved for user ${user.id}:`, files);
       const stlFiles = files.filter((file) =>
         file.name.toLowerCase().endsWith(".stl")
       );
 
-      console.log(`STL files found:`, stlFiles);
+      setFileCount(stlFiles.length);
+      console.log(`Found ${stlFiles.length} STL files for user ${user.id}`);
 
       const estimates = await Promise.all(
         stlFiles.map((file) => {
@@ -106,7 +133,16 @@ export default function CostCalculator() {
         })
       );
 
+      // Calculate total cost without labor cost
+      const totalCost = estimates.reduce(
+        (sum, estimate) => sum + estimate.cost,
+        0
+      );
+
+      console.log(`Calculated estimates for ${estimates.length} files`);
       setEstimates(estimates);
+      // Store total cost in state if needed
+      setTotalCost(totalCost + pricingData.laborCostPerHour); // Assuming you have a state for total cost
     } catch (error) {
       console.error("Error calculating costs:", error);
     } finally {
@@ -124,7 +160,7 @@ export default function CostCalculator() {
         {isCalculating ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            Calculating...
+            Calculating {fileCount > 0 ? `for ${fileCount} files...` : "..."}
           </>
         ) : (
           "Calculate Costs for Uploaded Files"
@@ -152,7 +188,7 @@ export default function CostCalculator() {
                   </div>
                   <div className="flex justify-between">
                     <dt>Print Time:</dt>
-                    <dd>{estimate.printTime.toFixed(1)} hours</dd>
+                    <dd>{estimate.printTime.toFixed(2)} hours</dd>
                   </div>
                   <div className="flex justify-between font-medium">
                     <dt>Estimated Cost:</dt>
@@ -166,6 +202,10 @@ export default function CostCalculator() {
               </CardContent>
             </Card>
           ))}
+          <div className="flex justify-between font-bold">
+            <dt>Total Cost:</dt>
+            <dd>${totalCost.toFixed(2)}</dd> {/* Display total cost here */}
+          </div>
         </div>
       )}
     </div>
