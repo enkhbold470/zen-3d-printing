@@ -28,6 +28,7 @@ interface FileListProps {
 
 export function FileList({ files: initialFiles, onRefresh }: FileListProps) {
   const [files, setFiles] = useState<FileInfo[]>(initialFiles);
+  const [loading, setLoading] = useState<boolean>(false);
   const { user } = useUser();
 
   useEffect(() => {
@@ -38,6 +39,7 @@ export function FileList({ files: initialFiles, onRefresh }: FileListProps) {
     async function fetchFiles() {
       if (!user) return;
 
+      setLoading(true); // Set loading to true when fetching starts
       try {
         const storageFiles = await listFiles(user.id);
         const newFiles = storageFiles.map((file) => ({
@@ -57,6 +59,8 @@ export function FileList({ files: initialFiles, onRefresh }: FileListProps) {
       } catch (error) {
         console.error("Error fetching files:", error);
         toast.error("Failed to load files");
+      } finally {
+        setLoading(false); // Set loading to false when fetching ends
       }
     }
 
@@ -86,19 +90,6 @@ export function FileList({ files: initialFiles, onRefresh }: FileListProps) {
     }
   };
 
-  // useEffect(() => {
-  //   const deleteFiles = async () => {
-  //     const filesToDelete = files.filter(
-  //       (file) => file.status === "In Processing"
-  //     );
-  //     for (const file of filesToDelete) {
-  //       await handleDeleteFile(file.id);
-  //     }
-  //   };
-
-  //   deleteFiles();
-  // }, [files]);
-
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
@@ -112,41 +103,47 @@ export function FileList({ files: initialFiles, onRefresh }: FileListProps) {
           </button>
         )}
       </div>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>File Name</TableHead>
-            <TableHead>Size</TableHead>
-            <TableHead>Upload Date</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Actions</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {files.map((file) => (
-            <TableRow key={file.id}>
-              <TableCell>{file.name}</TableCell>
-              <TableCell>{formatFileSize(file.size)}</TableCell>
-              <TableCell>{formatDate(file.uploadDate)}</TableCell>
-              <TableCell>
-                <Badge
-                  variant={file.status === "Uploaded" ? "secondary" : "default"}
-                >
-                  {file.status}
-                </Badge>
-              </TableCell>
-              <TableCell>
-                <button
-                  onClick={() => handleDeleteFile(file.id)}
-                  className="text-red-600 hover:text-red-800"
-                >
-                  Delete
-                </button>
-              </TableCell>
+      {loading ? ( // Show loading text if loading
+        <div className="text-center text-sm text-gray-500">Loading...</div>
+      ) : (
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>File Name</TableHead>
+              <TableHead>Size</TableHead>
+              <TableHead>Upload Date</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Actions</TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHeader>
+          <TableBody>
+            {files.map((file) => (
+              <TableRow key={file.id}>
+                <TableCell>{file.name}</TableCell>
+                <TableCell>{formatFileSize(file.size)}</TableCell>
+                <TableCell>{formatDate(file.uploadDate)}</TableCell>
+                <TableCell>
+                  <Badge
+                    variant={
+                      file.status === "Uploaded" ? "secondary" : "default"
+                    }
+                  >
+                    {file.status}
+                  </Badge>
+                </TableCell>
+                <TableCell>
+                  <button
+                    onClick={() => handleDeleteFile(file.id)}
+                    className="text-red-600 hover:text-red-800"
+                  >
+                    Delete
+                  </button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      )}
     </div>
   );
 }
