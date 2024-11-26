@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { PlusCircle } from "lucide-react";
 import HeaderDashboard from "@/components/HeaderDashboard";
 import { useUser } from "@clerk/nextjs";
+import CostCalculator from "@/components/cost-calculator";
 
 interface FileInfo {
   id: string;
@@ -56,12 +57,10 @@ export default function Dashboard() {
       <HeaderDashboard />
       <h1 className="text-3xl font-bold">Dashboard</h1>
       <FileUploadArea onFileUpload={handleFileUpload} />
-      <div className="text-center">
-        <Button variant="outline">
-          <PlusCircle className="mr-2 h-4 w-4" /> Browse Files
-        </Button>
+      <div className="space-y-6">
+        <FileList files={files} />
+        <CostCalculator />
       </div>
-      <FileList files={files} />
     </div>
   );
 }
