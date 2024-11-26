@@ -28,7 +28,9 @@
     "**/*.tsx",
     "**/*.js",
     "**/*.jsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "types", // Added this for custom types
+    "node_modules/three/examples/jsm/loaders/STLLoader.js"
   ],
   "exclude": ["node_modules"]
 }

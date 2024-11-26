@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { listFiles } from "@/lib/supabase/storage";
 import * as THREE from "three";
 import { Loader2 } from "lucide-react";
-import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
+import { STLLoader } from "three/examples/jsm/loaders/STLLoader.js";
 
 interface CostEstimate {
   fileName: string;
@@ -29,12 +29,14 @@ export default function CostCalculator() {
   ): Promise<CostEstimate> => {
     console.log(`Calculating metrics for: ${fileName}`);
     const loader = new STLLoader();
-    const geometry = await new Promise((resolve, reject) => {
-      loader.load(url, resolve, undefined, reject);
-    });
+    const geometry = await new Promise<THREE.BufferGeometry>(
+      (resolve, reject) => {
+        loader.load(url, resolve, undefined, reject);
+      }
+    );
 
     // Calculate volume using signed tetrahedron method
-    const position = geometry.attributes.position.array;
+    const position = geometry.attributes.position?.array as Float32Array;
     let volume = 0;
 
     for (let i = 0; i < position.length; i += 9) {
