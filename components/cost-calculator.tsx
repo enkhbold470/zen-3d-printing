@@ -75,7 +75,7 @@ export default function CostCalculator() {
     const costPerGram = pricingData.costPerGram || 0;
 
     const weight = volume * density;
-    let printTime = volume * 0.1; // Changed variable name to match interface
+    const printTime = volume * 0.1; // Changed variable name to match interface
 
     // Adjust print time and labor cost
     // if (printTime < 1) {
