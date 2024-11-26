@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image"; // Import Image from next/image
+
 const HeroSection = () => {
   return (
     <div className="relative bg-white overflow-hidden">
@@ -39,10 +41,12 @@ const HeroSection = () => {
         </div>
       </div>
       <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-        <img
+        <Image
           className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
           src="https://placekeanu.com/500/500"
           alt="3D printer in action"
+          width={500} // Specify width
+          height={500} // Specify height
         />
       </div>
     </div>

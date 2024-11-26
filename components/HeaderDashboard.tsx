@@ -11,6 +11,7 @@ import {
   UserButton,
   useUser,
 } from "@clerk/nextjs";
+import Image from "next/image"; // Import Image from next/image
 
 export default function HeaderDashboard() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,10 +24,12 @@ export default function HeaderDashboard() {
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link href="/">
               <span className="sr-only">3D Printing Service</span>
-              <img
+              <Image
                 className="h-8 w-auto sm:h-10"
                 src="https://placekeanu.com/100/100"
                 alt="3D Printing Service Logo"
+                width={100} // Specify width
+                height={100} // Specify height
               />
             </Link>
           </div>
@@ -69,10 +72,12 @@ export default function HeaderDashboard() {
             <div className="pt-5 pb-6 px-5">
               <div className="flex items-center justify-between">
                 <div>
-                  <img
+                  <Image
                     className="h-8 w-auto"
                     src="https://placekeanu.com/100/100"
                     alt="3D Printing Service Logo"
+                    width={100} // Specify width
+                    height={100} // Specify height
                   />
                 </div>
                 <div className="-mr-2">

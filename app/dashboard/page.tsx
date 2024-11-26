@@ -49,7 +49,11 @@ export default function Dashboard() {
   );
 
   if (!user) {
-    return <div>Please sign in to access the dashboard</div>;
+    return (
+      <div className="flex justify-center items-center h-screen text-center text-2xl">
+        Please sign in to access the dashboard...
+      </div>
+    );
   }
 
   return (
