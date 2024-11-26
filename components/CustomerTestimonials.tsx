@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image"; // Import Image from next/image
 
 const testimonials = [
   {
@@ -77,10 +78,12 @@ const CustomerTestimonials = () => {
             <div className="bg-white shadow overflow-hidden sm:rounded-lg">
               <div className="px-4 py-5 sm:p-6">
                 <div className="text-center">
-                  <img
+                  <Image // Use Image component from next/image
                     className="mx-auto h-24 w-24 rounded-full"
                     src={testimonials[currentIndex].imageUrl}
                     alt={testimonials[currentIndex].author}
+                    width={100} // Specify width
+                    height={100} // Specify height
                   />
                   <div className="mt-4">
                     <p className="text-lg leading-6 font-medium text-gray-900">

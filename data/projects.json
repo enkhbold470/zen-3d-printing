@@ -1,0 +1,38 @@
+        [
+            {
+                "id": 1,
+                "name": "Project 1",
+                "category": "Prototyping",
+                "imageUrl": "https://placekeanu.com/100/100"
+            },
+            {
+                "id": 2,
+                "name": "Project 2",
+                "category": "Batch Production",
+                "imageUrl": "https://placekeanu.com/200/200"
+            },
+            {
+                "id": 3,
+                "name": "Project 3",
+                "category": "Custom Design",
+                "imageUrl": "https://placekeanu.com/300/300"
+            },
+            {
+                "id": 4,
+                "name": "Project 4",
+                "category": "Prototyping",
+                "imageUrl": "https://placekeanu.com/400/400"
+            },
+            {
+                "id": 5,
+                "name": "Project 5",
+                "category": "Batch Production",
+                "imageUrl": "https://placekeanu.com/500/500"
+            },
+            {
+                "id": 6,
+                "name": "Project 6",
+                "category": "Custom Design",
+                "imageUrl": "https://placekeanu.com/600/600"
+            }
+        ]
