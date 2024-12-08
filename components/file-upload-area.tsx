@@ -78,7 +78,10 @@ export function FileUploadArea({ onFileUpload }: FileUploadAreaProps) {
         Drag & drop files here, or click to select files
       </p>
       <p className="text-xs text-gray-500 mt-1">
-        Supported formats: STEP, STL, OBJ, FBX (max 50MB)
+        Supported formats: STL (max 50MB)
+      </p>
+      <p  className="text-xs text-gray-500 mt-1">
+      For specific request, email us at <a href="mailto:zen@enk.icu" target="blank">zen@enk.icu</a>
       </p>
       {uploadProgress > 0 && (
         <Progress value={uploadProgress} className="w-full mt-4" />

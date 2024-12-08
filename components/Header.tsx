@@ -34,7 +34,7 @@ const Header = () => {
               <span className="sr-only">3D Printing Service</span>
               <Image
                 className="h-8 w-auto sm:h-10"
-                src="https://placekeanu.com/100/100"
+                src="/logo.svg"
                 alt="3D Printing Service Logo"
                 width={100} // Specify width
                 height={100} // Specify height

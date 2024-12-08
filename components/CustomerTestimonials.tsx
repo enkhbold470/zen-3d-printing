@@ -4,49 +4,7 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image"; // Import Image from next/image
-
-const testimonials = [
-  {
-    id: 1,
-    content:
-      "The quality of the 3D prints exceeded my expectations. Highly recommended!",
-    author: "John Doe",
-    role: "Product Designer",
-    imageUrl: "https://placekeanu.com/100/100",
-  },
-  {
-    id: 2,
-    content:
-      "Fast turnaround and excellent customer service. Will definitely use again!",
-    author: "Jane Smith",
-    role: "Architect",
-    imageUrl: "https://placekeanu.com/100/100",
-  },
-  {
-    id: 3,
-    content:
-      "Their expertise in 3D printing helped bring my concept to life. Amazing work!",
-    author: "Mike Johnson",
-    role: "Entrepreneur",
-    imageUrl: "https://placekeanu.com/100/100",
-  },
-  {
-    id: 4,
-    content:
-      "Impressed by the attention to detail and the finish quality of my prototypes.",
-    author: "Sarah Lee",
-    role: "Industrial Designer",
-    imageUrl: "https://placekeanu.com/100/100",
-  },
-  {
-    id: 5,
-    content:
-      "Great communication throughout the project. The team was very helpful.",
-    author: "Chris Brown",
-    role: "Engineer",
-    imageUrl: "https://placekeanu.com/100/100",
-  },
-];
+import testimonials from "@/data/testimonials.json";
 
 const CustomerTestimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
