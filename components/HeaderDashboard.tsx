@@ -23,14 +23,18 @@ export default function HeaderDashboard() {
         <div className="flex justify-between items-center py-4 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link href="/">
-              <span className="sr-only">3D Printing Service</span>
+            <div className="flex justify-center items-center gap-2">
+
+              <span className="sr-only">Zen3D</span>
               <Image
                 className="h-8 w-auto sm:h-10"
                 src="/logo.svg"
                 alt="3D Printing Service Logo"
                 width={100} // Specify width
                 height={100} // Specify height
-              />
+                />
+              <p className="opacity-90">Zen 3D</p> <p className="uppercase border rounded p-1 opacity-50">beta</p>
+                </div>
             </Link>
           </div>
           <div className="-mr-2 -my-2 md:hidden">
@@ -74,7 +78,7 @@ export default function HeaderDashboard() {
                 <div>
                   <Image
                     className="h-8 w-auto"
-                    src="https://placekeanu.com/100/100"
+                    src="/logo.svg"
                     alt="3D Printing Service Logo"
                     width={100} // Specify width
                     height={100} // Specify height

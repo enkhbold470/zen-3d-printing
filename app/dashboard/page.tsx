@@ -59,7 +59,7 @@ export default function Dashboard() {
   return (
     <div className="container mx-auto p-4 space-y-6">
       <HeaderDashboard />
-      <h1 className="text-3xl font-bold">Dashboard</h1>
+      <h1 className="text-3xl font-bold">Dashboard (Beta)</h1>
       <FileUploadArea onFileUpload={handleFileUpload} />
       <div className="space-y-6">
         <FileList files={files} />
