@@ -9,7 +9,7 @@ import {
   // UserButton,
 } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/sonner";
-
+import { Analytics } from "@vercel/analytics/react"
 export const metadata: Metadata = {
   title: "Zen 3D Printing Service",
   description: "Your one-stop solution for 3D printing needs",
