@@ -190,6 +190,10 @@ export default function CostCalculator() {
                     <dt>Print Time:</dt>
                     <dd>{estimate.printTime.toFixed(2)} hours</dd>
                   </div>
+                  <div className="flex justify-between">
+                    <dt>CA Electricity Cost:</dt>
+                    <dd>${" "}{(pricingData.electricityCostPerKWh * estimate.printTime).toFixed(3)}</dd>
+                  </div>
                   <div className="flex justify-between font-medium">
                     <dt>Estimated Cost:</dt>
                     <dd>${estimate.cost.toFixed(2)}</dd>
@@ -197,6 +201,11 @@ export default function CostCalculator() {
                   <div className="flex justify-between">
                     <dt>Material:</dt>
                     <dd>{estimate.material}</dd>
+                  </div>
+               
+                  <div className="flex justify-between">
+                    <dt>Labor Cost:</dt>
+                    <dd>${" "}{pricingData.laborCostPerHour}</dd>
                   </div>
                 </dl>
               </CardContent>

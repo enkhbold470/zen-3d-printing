@@ -10,32 +10,13 @@ export default function Contact() {
             <p className="text-lg">
               Email:{" "}
               <a
-                href="mailto:info@zen3dprinting.com"
+                href="mailto:info@zen@enk.icu"
                 className="text-blue-600 hover:text-blue-700 font-medium"
               >
-                info@zen3dprinting.com
+                zen@enk.icu
               </a>
             </p>
-            <p className="text-lg">
-              Phone:{" "}
-              <a
-                href="tel:+1234567890"
-                className="text-blue-600 hover:text-blue-700 font-medium"
-              >
-                +1 (234) 567-890
-              </a>
-            </p>
-            <p className="text-lg">
-              Instagram:{" "}
-              <a
-                href="https://instagram.com/zen3dprinting"
-                className="text-blue-600 hover:text-blue-700 font-medium"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                @zen3dprinting
-              </a>
-            </p>
+
           </div>
         </div>
       </div>

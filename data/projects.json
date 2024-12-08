@@ -1,38 +1,38 @@
         [
             {
                 "id": 1,
-                "name": "Project 1",
+                "name": "Big Brain Club Brain Model",
                 "category": "Prototyping",
-                "imageUrl": "https://placekeanu.com/100/100"
+                "imageUrl": "https://res.cloudinary.com/dpyi03dqc/image/upload/bigbrain/ibpttqscugcqfh2dewmd.webp"
             },
             {
                 "id": 2,
-                "name": "Project 2",
-                "category": "Batch Production",
-                "imageUrl": "https://placekeanu.com/200/200"
+                "name": "DA Phone Case",
+                "category": "Custom Design",
+                "imageUrl": "https://cdn.thingiverse.com/assets/6e/01/91/ba/3b/large_display_82a117c8-2ed4-4426-8e34-2b7a62c883c3.png"
             },
             {
                 "id": 3,
-                "name": "Project 3",
+                "name": "Samsung S23 Honeycomb Case",
                 "category": "Custom Design",
-                "imageUrl": "https://placekeanu.com/300/300"
+                "imageUrl": "https://cdn.thingiverse.com/assets/21/1d/35/ea/94/large_display_8f49bc66-8266-4077-ab0f-47946d9cfeb7.jpg"
             },
             {
                 "id": 4,
-                "name": "Project 4",
+                "name": "Voron 0.1 3D Printer",
                 "category": "Prototyping",
-                "imageUrl": "https://placekeanu.com/400/400"
+                "imageUrl": "https://scontent-sjc3-1.xx.fbcdn.net/v/t39.30808-6/346298185_959684271870253_4625351694465625079_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=SPivJ7rbkN8Q7kNvgHhs9La&_nc_zt=23&_nc_ht=scontent-sjc3-1.xx&_nc_gid=AtvIp7-NWJ8c_R5jnDn00g4&oh=00_AYBcpexl823FS3R4NDruzVY9bC8XOI3TTmgbM8Zq_dGFxA&oe=675AFDB5"
             },
             {
                 "id": 5,
-                "name": "Project 5",
-                "category": "Batch Production",
-                "imageUrl": "https://placekeanu.com/500/500"
+                "name": "Line Follower Robot",
+                "category": "Prototyping",
+                "imageUrl": "https://scontent-sjc3-1.xx.fbcdn.net/v/t1.6435-9/75246775_2435634983431005_1796307914785292288_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=YVU7T11kzKcQ7kNvgFb4uYw&_nc_zt=23&_nc_ht=scontent-sjc3-1.xx&_nc_gid=Az1gDRjlOQhZUtCevZW-T3G&oh=00_AYCRF6EF5o7BcOOVfrSBhcMHyhxO408KX5ZGfVnm0s_fsw&oe=677C8B22"
             },
             {
                 "id": 6,
-                "name": "Project 6",
-                "category": "Custom Design",
-                "imageUrl": "https://placekeanu.com/600/600"
+                "name": "Unaga Line Follower",
+                "category": "Batch Production",
+                "imageUrl": "https://raw.githubusercontent.com/enkhbold470/Unaga-Line-Follower/master/images/unaga%20(4).jpg"
             }
         ]

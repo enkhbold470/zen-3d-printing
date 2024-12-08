@@ -28,12 +28,14 @@ const HeroSection = () => {
                   </Link>
                 </div>
                 <div className="mt-3 sm:mt-0 sm:ml-3">
+                <Link href="#about">
                   <Button
                     variant="outline"
                     className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 md:py-4 md:text-lg md:px-10"
                   >
                     Learn More
                   </Button>
+                </Link>
                 </div>
               </div>
             </div>
@@ -43,7 +45,8 @@ const HeroSection = () => {
       <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
         <Image
           className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
-          src="https://placekeanu.com/500/500"
+          src="/landing.webp"
+          unoptimized = {true}
           alt="3D printer in action"
           width={500} // Specify width
           height={500} // Specify height
