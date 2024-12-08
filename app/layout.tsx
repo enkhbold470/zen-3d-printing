@@ -33,6 +33,7 @@ export default function RootLayout({
             </SignedIn> */}
           </header>
           {children}
+          <Analytics/>
           <Toaster />
         </body>
       </html>
